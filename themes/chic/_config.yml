@@ -1,9 +1,9 @@
 # Header
-navname: Noah's Blog
+navname: NOAH
 
 # navigatior items
 nav:
-  Posts: /archives
+  posts: /archives
   # Categories: /category
   # Tags: /tag
   # About: /about
