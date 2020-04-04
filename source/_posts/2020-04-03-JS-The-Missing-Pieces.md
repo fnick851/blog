@@ -16,7 +16,7 @@ Non-primitive values are mutable. A new value is created for each object literal
 
 3
 
-A variable points to a value. Variable equality means they point to the same value.
+A variable or a property of object points to a value. Equality means they point to the same value.
 
 4
 
