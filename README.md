@@ -1,3 +1,4 @@
-# Personal blog
+# My blog
 
-[https://fnick851.github.io/](https://fnick851.github.io/)
+Built with [Hexo](https://hexo.io/)  
+Deployed with [Zeit](https://zeit.co/)
