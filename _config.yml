@@ -4,8 +4,8 @@
 
 # Site
 title: 汉仑
-subtitle: Hanlun Song - Personal Blog
-description: Hanlun Song's personal blog.
+subtitle: Hanlun Song - Blog
+description: (Noah) Hanlun Song's blog.
 author: Hanlun Song
 language:
   - en
@@ -14,7 +14,7 @@ timezone: America/New_York
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://fnick851.github.io/
+url: https://noah-song.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -27,7 +27,7 @@ archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
-skip_render:
+skip_render: "portfolio/**/*"
 
 # Writing
 new_post_name: :year-:month-:day-:title.md # File name of new posts
@@ -87,6 +87,6 @@ archive_generator:
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
-  repo: https://github.com/fnick851/fnick851.github.io.git
-  branch: master
+  type:
+  repo:
+  branch:
