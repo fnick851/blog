@@ -1,9 +1,9 @@
 ---
-title: "JS: The Missing Pieces"
+title: "JS Essentials"
 date: 2020-04-03 19:38:40
 ---
 
-**Here is (probably) all the missing pieces you need in order to write correct JavaScript programs:**
+**Here's probably the missing pieces you need in order to write correct JavaScript programs:**
 
 1
 
