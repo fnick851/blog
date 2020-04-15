@@ -1,15 +1,29 @@
 <!DOCTYPE html>
 <html lang="<%= config.language %>">
-<head>
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-104425505-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "UA-104425505-1");
+    </script>
     <%- partial('_partial/head',{cache: true}) %>
-</head>
-<body>
+  </head>
+  <body>
     <div class="wrapper">
-        <%- partial('_partial/header',{cache: true}) %>
-        <div class="main">
-            <%- body %>
-        </div>
-        <%- partial('_partial/footer',{cache: true}) %>
+      <%- partial('_partial/header',{cache: true}) %>
+      <div class="main">
+        <%- body %>
+      </div>
+      <%- partial('_partial/footer',{cache: true}) %>
     </div>
-</body>
+  </body>
 </html>
