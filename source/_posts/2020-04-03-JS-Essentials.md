@@ -11,8 +11,24 @@ Everything is a value.
 
 2
 
-Primitive values are immutable. There is only one distinct value for each primitive value.  
+Primitive values are immutable. There is only one distinct value for each primitive value.
+
+> Primitive values:
+>
+> - Undefined
+> - Null
+> - Boolean
+> - Number
+> - String
+> - Symbol
+> - BigInt
+
 Non-primitive values are mutable. A new value is created for each object literal or function expression evaluation.
+
+> Non-primitive values:
+>
+> - Function
+> - Object
 
 3
 
