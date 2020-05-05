@@ -1,5 +1,5 @@
 ---
-title: "JS Essentials"
+title: Some JS Essentials
 date: 2020-04-03 19:38:40
 ---
 
