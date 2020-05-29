@@ -9,14 +9,14 @@ nav:
   # About: /about
 
 # favicon
-favicon: /image/head_sketch.png
+favicon: /image/avatar.png
 
 # Profile
 nickname: 宋汉仑
 
 ### this variable is MarkDown form.
 description: 遽见追呼，不知所以。<br />但行好事，莫问前程。
-avatar: /image/head_sketch.png
+avatar: /image/avatar.png
 
 # main menu navigation
 ## links key words should not be changed.
