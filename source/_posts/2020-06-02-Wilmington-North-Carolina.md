@@ -10,11 +10,11 @@ date: 2020-06-02 18:17:31
     style.setAttribute('type', 'text/css');
     var css = /* css */`
         .post-content .post-image {
-            max-width:512px; 
-            width:100%; 
+            max-width: 512px; 
+            width: 100%; 
             margin: 100px auto; 
             border: 1px solid lightgrey; 
-            border-radius: 5px;
+            border-radius: 1px;
         }   
     `
     if (style.styleSheet) {   
