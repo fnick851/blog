@@ -39,6 +39,6 @@ date: 2020-06-02 18:17:31
 
 ---
 
-_from December 2015_
+_Photos taken in December 2015_
 
 ---
