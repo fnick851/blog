@@ -2,6 +2,10 @@ body {
   padding: 10px;
 }
 
+.nes-btn {
+  margin-bottom: 10px;
+}
+
 @font-face {
   font-family: "Zpix";
   src: url("../font/Zpix.ttf");
@@ -57,8 +61,12 @@ body {
 }
 
 .nes-list.is-disc li::before {
+  top: 18px;
+  left: -25px;
+}
+
+.nes-list.is-circle li::before {
   top: 3px;
-  left: -23px;
 }
 
 .social-icons {
