@@ -23,10 +23,13 @@
       <div class="navbar-header">
         <div>
           <a href="<%- config.root %>">
-            <span class="arrow">➜</span> <span class="tilde">~</span> <%=
-            theme.navname %> <span class="cursor"><a id="mobile-toggle-theme">Light</a>
+            <span class="arrow">➜</span>
+            <span class="tilde">~</span> 
+            <%=theme.navname%> 
+            <span class="cursor"></span>
+            <!-- <a id="mobile-toggle-theme">Light</a> -->
         </div>
-        <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+        <!-- <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div> -->
       </div>
       <div class="menu" id="mobile-menu">
         <% for (var i in theme.nav){ %>
@@ -37,15 +40,15 @@
   </nav>
 </header>
 <script>
-  var mobileBtn = function f() {
-    var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
-    var mobileMenu = document.getElementById("mobile-menu");
-    if (toggleMenu.classList.contains("active")) {
-      toggleMenu.classList.remove("active");
-      mobileMenu.classList.remove("active");
-    } else {
-      toggleMenu.classList.add("active");
-      mobileMenu.classList.add("active");
-    }
-  };
+  // var mobileBtn = function f() {
+  //   var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+  //   var mobileMenu = document.getElementById("mobile-menu");
+  //   if (toggleMenu.classList.contains("active")) {
+  //     toggleMenu.classList.remove("active");
+  //     mobileMenu.classList.remove("active");
+  //   } else {
+  //     toggleMenu.classList.add("active");
+  //     mobileMenu.classList.add("active");
+  //   }
+  // };
 </script>

@@ -26,5 +26,8 @@
     "hexo-renderer-marked": "^2.0.0",
     "hexo-renderer-stylus": "^1.1.0",
     "hexo-server": "^1.0.0"
+  },
+  "volta": {
+    "node": "15.5.0"
   }
 }
