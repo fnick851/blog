@@ -2,10 +2,12 @@
   <nav class="navbar">
     <div class="container">
       <div class="navbar-header header-logo">
-        <a href="<%- config.root %>"
-          ><span class="arrow">➜</span> <span class="tilde">~</span> <%- theme.nickname %> / <%=
-          theme.navname %> <span class="cursor"></span
-        ></a>
+        <a href="<%- config.root %>">
+          <span class="arrow">➜</span>
+          <span class="tilde">~</span>
+          <%- theme.nickname %> / <%= theme.navname %> 
+          <span class="cursor"></span>
+        </a>
       </div>
       <div class="menu navbar-right">
         <!-- <% for (var i in theme.nav){ %>
@@ -24,8 +26,8 @@
         <div>
           <a href="<%- config.root %>">
             <span class="arrow">➜</span>
-            <span class="tilde">~</span> 
-            <%=theme.navname%> 
+            <span class="tilde">~</span>
+            <%- theme.nickname %> / <%= theme.navname %> 
             <span class="cursor"></span>
             <!-- <a id="mobile-toggle-theme">Light</a> -->
         </div>
