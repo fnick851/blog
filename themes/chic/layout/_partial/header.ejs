@@ -10,9 +10,9 @@
         </a>
       </div>
       <div class="menu navbar-right">
-        <!-- <% for (var i in theme.nav){ %>
+        <% for (var i in theme.nav){ %>
         <a class="menu-item" href="<%- url_for(theme.nav[i]) %>"><%= i %></a>
-        <% } %> -->
+        <% } %>
         <!-- <input id="switch_default" type="checkbox" class="switch_default" />
         <label for="switch_default" class="toggleBtn"></label> -->
       </div>
@@ -32,12 +32,15 @@
             <!-- <a id="mobile-toggle-theme">Light</a> -->
         </div>
         <!-- <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div> -->
+        <% for (var i in theme.nav){ %>
+          <a class="menu-item" href="<%- url_for(theme.nav[i]) %>"><%= i %></a>
+          <% } %>
       </div>
-      <div class="menu" id="mobile-menu">
+      <!-- <div class="menu" id="mobile-menu">
         <% for (var i in theme.nav){ %>
         <a class="menu-item" href="<%- url_for(theme.nav[i]) %>"><%= i %></a>
         <% } %>
-      </div>
+      </div> -->
     </div>
   </nav>
 </header>
