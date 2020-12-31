@@ -3,6 +3,17 @@ title: "Wilmington, North Carolina"
 date: 2020-06-02 18:17:31
 ---
 
+<img class="post-image" src="/img/wilmington/IMG_1300.jpeg" />
+<img class="post-image" src="/img/wilmington/IMG_1377.jpeg" />
+<img class="post-image" src="/img/wilmington/IMG_1367.jpeg" />
+<img class="post-image" src="/img/wilmington/IMG_1358.jpeg" />
+<img class="post-image" src="/img/wilmington/IMG_1372.jpeg" />
+<img class="post-image" src="/img/wilmington/IMG_1289.jpeg" />
+<img class="post-image" src="/img/wilmington/IMG_1299.jpeg" />
+<img class="post-image" src="/img/wilmington/IMG_1325.jpeg" />
+
+_Photos were taken in December 2015 with an iPhone._
+
 <script>
 ;(function(){
     var head = document.getElementsByTagName('head')[0];
@@ -27,18 +38,3 @@ date: 2020-06-02 18:17:31
     head.appendChild(style);
 })()
 </script>
-
-<img class="post-image" src="/img/wilmington/IMG_1300.jpeg" />
-<img class="post-image" src="/img/wilmington/IMG_1377.jpeg" />
-<img class="post-image" src="/img/wilmington/IMG_1367.jpeg" />
-<img class="post-image" src="/img/wilmington/IMG_1358.jpeg" />
-<img class="post-image" src="/img/wilmington/IMG_1372.jpeg" />
-<img class="post-image" src="/img/wilmington/IMG_1289.jpeg" />
-<img class="post-image" src="/img/wilmington/IMG_1299.jpeg" />
-<img class="post-image" src="/img/wilmington/IMG_1325.jpeg" />
-
----
-
-_Photos taken in December 2015_
-
----
