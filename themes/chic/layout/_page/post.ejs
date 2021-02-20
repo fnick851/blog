@@ -55,22 +55,22 @@
       <% } %>
     </section>
     <% } %>
-    <section class="post-tags">
+    <!-- <section class="post-tags">
       <div>
-        <!-- <span>Tag(s):</span>
+        <span>Tag(s):</span>
         <span class="tag">
           <% if(page.tags.length!==0){%> <% page.tags.forEach(item=>{ %>
           <a href="<%- url_for(item.path) %>"># <%- item.name %></a>
           <% }) %> <% } %>
-        </span> -->
+        </span>
       </div>
       <div>
-        <!-- <a href="javascript:window.history.back();">back</a>
-        <span>· </span> -->
-        <!-- <a href="<%- config.root %>">home</a> -->
+        <a href="javascript:window.history.back();">back</a>
+        <span>· </span>
+        <a href="<%- config.root %>">home</a>
         <a href="/archives">back</a>
       </div>
-    </section>
+    </section> -->
     <!-- <section class="post-nav">
       <% if(post.prev){ %>
       <a class="prev" rel="prev" href="<%- url_for(post.prev.path)%>"

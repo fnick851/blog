@@ -12,7 +12,7 @@ date: 2020-06-02 18:17:31
 <img class="post-image" src="/img/wilmington/IMG_1299.jpeg" />
 <img class="post-image" src="/img/wilmington/IMG_1325.jpeg" />
 
-_Photos were taken in December 2015 with an iPhone._
+_Photos were taken in December 2015 on an iPhone._
 
 <script>
 ;(function(){
