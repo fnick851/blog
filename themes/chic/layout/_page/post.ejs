@@ -28,9 +28,7 @@
       <% } %>
     </header>
 
-    <div class="post-content">
-      <%- page.content %>
-    </div>
+    <div class="post-content"><%- page.content %></div>
 
     <% if(theme.post_copyright_enable){ %>
     <section class="post-copyright">
@@ -67,12 +65,13 @@
         </span> -->
       </div>
       <div>
-        <a href="javascript:window.history.back();">back</a>
-        <span>· </span>
-        <a href="<%- config.root %>">home</a>
+        <!-- <a href="javascript:window.history.back();">back</a>
+        <span>· </span> -->
+        <!-- <a href="<%- config.root %>">home</a> -->
+        <a href="/archives">back</a>
       </div>
     </section>
-    <section class="post-nav">
+    <!-- <section class="post-nav">
       <% if(post.prev){ %>
       <a class="prev" rel="prev" href="<%- url_for(post.prev.path)%>"
         ><%- post.prev.title%></a
@@ -82,6 +81,6 @@
         ><%- post.next.title%></a
       >
       <% } %>
-    </section>
+    </section> -->
   </article>
 </div>
