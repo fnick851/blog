@@ -5,7 +5,8 @@
     "new": "hexo new post",
     "serve": "hexo serve",
     "deploy": "hexo deploy -g",
-    "clean": "hexo clean"
+    "clean": "hexo clean",
+    "up": "npx npm-check-updates -u"
   },
   "dependencies": {
     "hexo": "^5.4.0",
