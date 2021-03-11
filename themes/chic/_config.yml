@@ -23,7 +23,7 @@ avatar: /image/avatar.png
 ## Complete url after key words.
 ## Unused key can be commented out.
 links:
-  Category: /portfolio
+  Category: https://portfolio.noah-song.com/
   Github: https://github.com/fnick851
   # Instagram: https://www.instagram.com/nulnah/
   LinkedIn: https://www.linkedin.com/in/hanlun/
