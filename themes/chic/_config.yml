@@ -24,32 +24,32 @@ avatar: /image/avatar.png
 ## Unused key can be commented out.
 links:
   Category: https://portfolio.noah-song.com/
-  Github: https://github.com/fnick851
-  # Instagram: https://www.instagram.com/nulnah/
   LinkedIn: https://www.linkedin.com/in/hanlun/
-  # Blog: /archives
+  Resume: https://portfolio.noah-song.com/Hanlun_%22Noah%22_Song-Resume.pdf
+  Github: https://github.com/fnick851
+  CodePen: https://codepen.io/noahsong
+  Twitter: https://twitter.com/fnick851
+  Weibo: https://weibo.com/gamenerd
+  # WeChat:
+  # Instagram:
+  # Blog:
   # Tags:
   # Link:
-  # Resume:
   # Publish:
   # Trophy:
   # Gallary:
-  #  RSS:
-  #  AliPay:
-  # ZhiHu: https://www.zhihu.com/people/sirice
-  #  FaceBook:
-  #  Twitter:
-  #  Skype:
-  #  CodeSandBox:
-  #  CodePen:
+  # RSS:
+  # AliPay:
+  # ZhiHu:
+  # FaceBook:
+  # Skype:
+  # CodeSandBox:
   # Sketch:
-  #  Gitlab:
-  #  Dribble:
+  # Gitlab:
+  # Dribble:
   # Reddit:
-  #  YouTube:
-  #  QQ:
-  #  Weibo:
-  #  WeChat:
+  # YouTube:
+  # QQ:
 
 # how links show: you have 2 choice--text or icon.
 links_text_enable: false
