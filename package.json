@@ -1,8 +1,4 @@
 {
-  "private": true,
-  "hexo": {
-    "version": "5.4.0"
-  },
   "scripts": {
     "hexo": "hexo",
     "new": "hexo new post",
