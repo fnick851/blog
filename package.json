@@ -1,5 +1,4 @@
 {
-  "private": true,
   "scripts": {
     "hexo": "hexo",
     "new": "hexo new post",
@@ -23,8 +22,5 @@
     "hexo-renderer-marked": "^4.0.0",
     "hexo-renderer-stylus": "^2.0.1",
     "hexo-server": "^2.0.0"
-  },
-  "hexo": {
-    "version": "5.4.0"
   }
 }
