@@ -3,18 +3,13 @@ title: Notes for JavaScript
 date: 2020-04-03 19:38:40
 ---
 
-**The keys to write correct JavaScript programs:**
+**A way to think about a JavaScript universe.**
 
-1
+## Value Rules
+1. Everything is a value.
 
-Everything is a value.
-
-2
-
-Primitive values are immutable. There is only one distinct value for each primitive value.
-
+2. Primitive values are immutable. There is only one value in the universe for each primitive value.
 > Primitive values:
->
 > - Undefined
 > - Null
 > - Boolean
@@ -23,18 +18,14 @@ Primitive values are immutable. There is only one distinct value for each primit
 > - Symbol
 > - BigInt
 
-Non-primitive values are mutable. A new value is created for each object literal or function expression evaluation.
-
+3. Non-primitive values are mutable. A new value is created for each object literal or function expression evaluation.
 > Non-primitive values:
->
 > - Function
 > - Object
 
-3
+4. A variable or a property of object points to a value. Equality means they point to the same value.
 
-A variable or a property of object points to a value. Equality means they point to the same value.
-
-4
+## Equality Rules
 
 ```javascript
 // NaN is not equal to NaN
@@ -46,17 +37,13 @@ Object.is(0, -0) === false;
 -0 === 0;
 ```
 
-5
-
+## The `null` Type
 ```javascript
 // null has a typeof 'object'
 typeof null === "object";
 ```
 
-6
-
-> **Simple JS Semicolon Rule**
->
+## Semicolon Rule
 > Add a leading semicolon when a line starts with one of the following:
 >
 > > \+ - / [ (
