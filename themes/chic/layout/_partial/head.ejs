@@ -1,6 +1,6 @@
 <meta charset="UTF-8">
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+      content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <% if(config.author){ %>
     <meta name="author" content="<%- config.author %>">
@@ -42,14 +42,22 @@ if (is_archive()){
 <% if (theme.stylesheets !== undefined && theme.stylesheets.length > 0) { %>
     <!-- stylesheets list from _config.yml -->
     <% theme.stylesheets.forEach(url => { %>
-    <link rel="stylesheet" href="<%- url_for(url) %>">
+    <link
+        rel="preload"
+        href="<%- url_for(url) %>"
+        as="style"
+        onLoad="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+        <link rel="stylesheet" href="<%- url_for(url) %>" />
+    </noscript>
     <% }); %>
 <% } %>
 <%# javascript list %>
 <% if (theme.scripts !== undefined && theme.scripts.length > 0) { %>
     <!-- scripts list from _config.yml -->
     <% theme.scripts.forEach(url => { %>
-    <script src="<%- url_for(url) %>"></script>
+    <script defer async src="<%- url_for(url) %>"></script>
     <% }); %>
 <% } %>
 <%# mathjax support %>

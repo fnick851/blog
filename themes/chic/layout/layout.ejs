@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="<%= config.language %>">
   <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=UA-104425505-1"
@@ -12,17 +11,15 @@
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
-
       gtag("config", "UA-104425505-1");
     </script>
     <%- partial('_partial/head',{cache: true}) %>
   </head>
   <body>
+    <a class="skip-link" href="#maincontent">Skip to main</a>
     <div class="wrapper">
       <%- partial('_partial/header',{cache: true}) %>
-      <div class="main">
-        <%- body %>
-      </div>
+      <div class="main" id="maincontent"><%- body %></div>
       <%- partial('_partial/footer',{cache: true}) %>
     </div>
   </body>
