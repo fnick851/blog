@@ -23,6 +23,7 @@ _Photos were taken in December 2015 on an iPhone._
         .post-content .post-image {
             max-width: 512px; 
             width: 100%; 
+            height: auto;
             margin: 100px auto; 
             border: 1px solid lightgrey; 
             border-radius: 1px;
