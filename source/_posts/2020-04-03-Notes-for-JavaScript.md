@@ -33,14 +33,13 @@ date: 2020-04-03 19:38:40
 
 ## Equality Rules
 
+`Object.is(a, b)` is called "same value equality". It can compare two objects or not. It is the same as `a === b` except for:
 ```javascript
-// NaN is not equal to NaN
-NaN !== NaN;
-// 0 is a different value from -0
-Object.is(0, -0) === false;
-// -0 is equal to 0
-0 === -0;
--0 === 0;
+Object.is(NaN, NaN) // true
+NaN === NaN; // false (historical reason)
+
+Object.is(0, -0) // false;
+0 === -0 // true
 ```
 
 ## The `null` Type
