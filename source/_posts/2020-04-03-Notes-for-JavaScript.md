@@ -14,9 +14,11 @@ date: 2020-04-03 19:38:40
 > - Null
 > - Boolean
 > - Number
+>     - Special numbers: `NaN`, `Infinity`, `-Infinity`, `-0`
 > - String
 > - Symbol
 > - BigInt
+
 
 3. Non-primitive values are mutable. A new value is created for each object literal or function expression evaluation.
 > Non-primitive values:
