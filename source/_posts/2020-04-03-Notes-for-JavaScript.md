@@ -39,7 +39,7 @@ Object.is(0, -0) === false;
 
 ## The `null` Type
 ```javascript
-// null has a typeof 'object'
+// null has a typeof 'object' (this is a historical bug in JavaScript)
 typeof null === "object";
 ```
 
