@@ -25,6 +25,8 @@ The New Atlas：https://www.youtube.com/user/LandDestroyerReport
 
 Pivot to Peace：https://www.youtube.com/channel/UC0kTT8UqaJksFJQKXI4h6oQ
 
+Carl Zha：https://www.youtube.com/user/CarlZha
+
 ## In Chinese
 
 Houston Asian Voice：https://www.youtube.com/c/HoustonAsianVoice
