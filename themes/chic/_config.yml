@@ -25,7 +25,7 @@ avatar: /image/avatar.png
 links:
   Category: https://portfolio.noah-song.com/
   LinkedIn: https://www.linkedin.com/in/hanlun/
-  Resume: https://portfolio.noah-song.com/Hanlun_%22Noah%22_Song-Resume.pdf
+  # Resume: https://portfolio.noah-song.com/Hanlun_%22Noah%22_Song-Resume.pdf
   Github: https://github.com/fnick851
   CodePen: https://codepen.io/noahsong
   Twitter: https://twitter.com/fnick851
@@ -43,7 +43,7 @@ links:
   # ZhiHu:
   # FaceBook:
   # Skype:
-  # CodeSandBox:
+  CodeSandBox: https://codesandbox.io/u/fnick851
   # Sketch:
   # Gitlab:
   # Dribble:
