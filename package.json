@@ -1,29 +1,19 @@
 {
-  "hexo": {
-    "version": "6.3.0"
+  "name": "blog",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
   },
   "scripts": {
-    "hexo": "hexo",
-    "new": "hexo new post",
-    "serve": "hexo serve",
-    "deploy": "hexo deploy -g",
-    "clean": "hexo clean",
+    "build": "node build.mjs",
+    "serve": "node serve.mjs",
+    "new": "node new-post.mjs",
     "up": "npx npm-check-updates -u"
   },
   "dependencies": {
-    "hexo": "^6.3.0",
-    "hexo-browsersync": "^0.3.0",
-    "hexo-cli": "^4.3.0",
-    "hexo-deployer-git": "^3.0.0",
-    "hexo-generator-archive": "^2.0.0",
-    "hexo-generator-category": "^2.0.0",
-    "hexo-generator-feed": "^3.0.0",
-    "hexo-generator-index": "^3.0.0",
-    "hexo-generator-sitemap": "^3.0.1",
-    "hexo-generator-tag": "^2.0.0",
-    "hexo-renderer-ejs": "^2.0.0",
-    "hexo-renderer-marked": "^6.0.0",
-    "hexo-renderer-stylus": "^2.1.0",
-    "hexo-server": "^3.0.0"
+    "highlight.js": "^11.11.1",
+    "js-yaml": "^4.3.0",
+    "marked": "^15.0.12"
   }
 }
