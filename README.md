@@ -7,6 +7,7 @@ Deployed with [Vercel](https://vercel.com/).
 
 ```bash
 npm run build              # generate the site into public/
+npm test                   # build + smoke-test output invariants
 npm run serve              # dev server on http://localhost:4000, rebuilds on change
 npm run new "Post Title"   # create source/_posts/YYYY-MM-DD-Post-Title.md
 ```

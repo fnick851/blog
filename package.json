@@ -9,6 +9,7 @@
     "build": "node build.mjs",
     "serve": "node serve.mjs",
     "new": "node new-post.mjs",
+    "test": "node --test test.mjs",
     "up": "npx npm-check-updates -u"
   },
   "dependencies": {

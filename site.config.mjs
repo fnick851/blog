@@ -26,7 +26,5 @@ export default {
     Github: "https://github.com/fnick851",
     CodePen: "https://codepen.io/noahsong",
     CodeSandBox: "https://codesandbox.io/u/fnick851",
-    Twitter: "https://twitter.com/fnick851",
-    Weibo: "https://weibo.com/gamenerd",
   },
 };
