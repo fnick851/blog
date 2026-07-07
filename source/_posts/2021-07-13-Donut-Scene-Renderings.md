@@ -11,29 +11,3 @@ date: 2021-07-13 20:14:12
 <img alt="donut render step six" class="post-image" src="/img/donut-renderings/donut6.jpeg" />
 
 _Steps of the donut rendering process using Blender._
-
-<script>
-;(function(){
-    var head = document.getElementsByTagName('head')[0];
-    var style = document.createElement('style');
-    style.setAttribute('type', 'text/css');
-    var css = /* css */`
-        .post-content .post-image {
-            max-width: 512px; 
-            width: 100%; 
-            height: auto;
-            margin: 100px auto; 
-            border: 1px solid lightgrey; 
-            border-radius: 1px;
-        }   
-    `
-    if (style.styleSheet) {   
-        // IE
-        style.styleSheet.cssText = css;
-    } else { 
-        // the world
-        style.appendChild(document.createTextNode(css));
-    }
-    head.appendChild(style);
-})()
-</script>

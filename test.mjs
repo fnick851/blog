@@ -56,12 +56,12 @@ test("external links get target/rel injected", async () => {
   assert.match(html, /target="_blank" rel="noopener" href="https:\/\/github\.com\/fnick851"/);
 });
 
-test("smartypants applies to prose but not raw HTML blocks", async () => {
+test("smartypants applies to prose but not raw HTML", async () => {
   const rust = await read("2021/07/06/Notes-for-Rust/index.html");
   assert.match(rust, /that’s called its owner/);
   const donut = await read("2021/07/13/Donut-Scene-Renderings/index.html");
-  // the raw <script> embedded in this post must keep straight quotes
-  assert.match(donut, /getElementsByTagName\('head'\)/);
+  // raw HTML in posts must keep straight quotes in attributes
+  assert.match(donut, /<img alt="donut render step one" class="post-image"/);
 });
 
 test("fenced code renders as line-numbered highlight figure", async () => {

@@ -441,6 +441,17 @@ a:hover {
   overflow: hidden;
 }
 
+/* photo posts tag their images with class="post-image" (previously injected
+   per-post by inline scripts; consolidated here July 2026) */
+.post-content .post-image {
+  max-width: 512px;
+  width: 100%;
+  height: auto;
+  margin: 100px auto;
+  border: 1px solid lightgrey;
+  border-radius: 1px;
+}
+
 .post-content blockquote {
   font-size: 1rem;
   display: block;
