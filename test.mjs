@@ -92,14 +92,14 @@ test("no external scripts anywhere — the site ships zero third-party JS", asyn
   }
 });
 
-test("buildToc nests deeper headings as collapsed sublists", async () => {
+test("buildToc nests deeper headings as sublists", async () => {
   const { buildToc } = await import("./lib/toc.mjs");
   const toc = buildToc('<h2 id="A">A</h2><h3 id="B">B</h3><h2 id="C">C</h2>');
   assert.equal(
     toc,
     '<ul class="toc-list">' +
       '<li class="toc-list-item"><a class="toc-link" href="#A">A</a>' +
-      '<ul class="toc-list is-collapsible is-collapsed">' +
+      '<ul class="toc-list">' +
       '<li class="toc-list-item"><a class="toc-link" href="#B">B</a></li>' +
       "</ul></li>" +
       '<li class="toc-list-item"><a class="toc-link" href="#C">C</a></li>' +
