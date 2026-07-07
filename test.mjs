@@ -79,7 +79,7 @@ test("stylesheet is render-blocking (no preload hack)", async () => {
 test("TOC is generated at build time, only on pages with headings", async () => {
   const withToc = await read("2021/07/06/Notes-for-Rust/index.html");
   assert.match(withToc, /<a class="toc-link" href="#Borrowing">Borrowing<\/a>/);
-  const noHeadings = await read("2022/11/17/post/index.html");
+  const noHeadings = await read("2022/11/17/横渠四句/index.html");
   assert.doesNotMatch(noHeadings, /post-toc/);
 });
 
@@ -98,6 +98,7 @@ test("admin editor ships, is unindexed, and is excluded from the feed/sitemap", 
   const admin = await read("admin/index.html");
   assert.match(admin, /<meta name="robots" content="noindex">/);
   assert.match(admin, /api\.github\.com/);
+  assert.match(admin, /id="delete"/);
   const sitemap = await read("sitemap.txt");
   assert.doesNotMatch(sitemap, /admin/);
 });

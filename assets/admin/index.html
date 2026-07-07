@@ -71,6 +71,7 @@
       cursor: pointer;
     }
     button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    button.danger { color: var(--danger); border-color: var(--border); }
     button:disabled { opacity: 0.5; }
     .row { display: flex; gap: 0.6em; align-items: center; flex-wrap: wrap; margin: 0.8em 0; }
     .grow { flex: 1; }
@@ -123,6 +124,7 @@
     <section id="view-list" hidden>
       <div class="row">
         <button class="primary" id="new-post">＋ New post</button>
+        <span class="meta grow" id="list-status" aria-live="polite"></span>
       </div>
       <ul class="posts" id="post-list"></ul>
     </section>
@@ -132,6 +134,7 @@
       <div class="row">
         <button id="back">‹ Posts</button>
         <span class="meta grow" id="editor-meta"></span>
+        <button id="delete" class="danger" hidden>Delete</button>
       </div>
       <input type="text" id="title" placeholder="Title" autocomplete="off">
       <textarea id="body" placeholder="Write in markdown. Headings (##), lists, > quotes, ``` code fences and raw HTML all work."></textarea>
@@ -154,9 +157,9 @@
     const TIMEZONE = "America/New_York";
     const MAX_IMAGE_DIM = 1600;
 
-    const $ = (id) => document.getElementById(id);
+    const el = (id) => document.getElementById(id);
     const views = ["view-setup", "view-list", "view-editor"];
-    const show = (id) => views.forEach((v) => ($(v).hidden = v !== id));
+    const show = (id) => views.forEach((v) => (el(v).hidden = v !== id));
 
     // editor state
     let state = null; // { mode: "new"|"edit", path?, sha?, dateStr, title, body, imgDir, images: [{path, dataUrl}] }
@@ -212,14 +215,14 @@
     // ---- views ------------------------------------------------------------
 
     async function boot() {
-      $("logout").hidden = !token();
+      el("logout").hidden = !token();
       if (!token()) { show("view-setup"); return; }
       show("view-list");
       await loadList();
     }
 
     async function loadList() {
-      const listEl = $("post-list");
+      const listEl = el("post-list");
       listEl.innerHTML = "<li><button disabled>Loading…</button></li>";
       try {
         const files = await gh(`/repos/${REPO}/contents/source/_posts?ref=${BRANCH}`);
@@ -240,7 +243,7 @@
         if (String(err).includes("401")) {
           localStorage.removeItem("gh-token");
           show("view-setup");
-          $("setup-status").textContent = "Token was rejected — connect again.";
+          el("setup-status").textContent = "Token was rejected — connect again.";
         } else {
           listEl.innerHTML = `<li><button disabled>${err.message}</button></li>`;
         }
@@ -248,10 +251,11 @@
     }
 
     function openEditor() {
-      $("title").value = state.title;
-      $("body").value = state.body;
-      $("editor-meta").textContent =
+      el("title").value = state.title;
+      el("body").value = state.body;
+      el("editor-meta").textContent =
         state.mode === "edit" ? state.path.replace("source/_posts/", "") : `new · ${state.dateStr}`;
+      el("delete").hidden = state.mode !== "edit";
       setStatus("");
       show("view-editor");
       restoreDraft();
@@ -304,8 +308,8 @@
       draftTimer = setTimeout(() => {
         try {
           localStorage.setItem(draftKey(), JSON.stringify({
-            title: $("title").value,
-            body: $("body").value,
+            title: el("title").value,
+            body: el("body").value,
             imgDir: state.imgDir,
             images: state.images,
           }));
@@ -319,8 +323,8 @@
       try {
         const draft = JSON.parse(saved);
         if (draft.body === state.body && draft.title === state.title) return;
-        $("title").value = draft.title;
-        $("body").value = draft.body;
+        el("title").value = draft.title;
+        el("body").value = draft.body;
         state.imgDir = draft.imgDir;
         state.images = draft.images || [];
         setStatus("Draft restored from this device.");
@@ -377,7 +381,7 @@
           while (state.images.some((img) => img.path.endsWith("/" + name))) name = `${base}-${n++}.jpg`;
           const path = `img/${state.imgDir}/${name}`;
           state.images.push({ path: `source/${path}`, dataUrl });
-          insertAtCursor($("body"), `\n<img alt="${base}" class="post-image" src="/${path}" />\n`);
+          insertAtCursor(el("body"), `\n<img alt="${base}" class="post-image" src="/${path}" />\n`);
           setStatus(`Added ${name} (uploads on publish).`);
         } catch (err) {
           setStatus(`Could not process ${file.name}: ${err.message}`, "error");
@@ -396,8 +400,8 @@
     // ---- publish: one commit via the Git Data API ---------------------------
 
     async function publish() {
-      const title = $("title").value.trim();
-      const body = $("body").value.trim();
+      const title = el("title").value.trim();
+      const body = el("body").value.trim();
       if (!title) return setStatus("A title is required.", "error");
       if (!body) return setStatus("The post is empty.", "error");
 
@@ -408,7 +412,7 @@
       const images = state.images.filter((img) =>
         body.includes(img.path.replace(/^source/, "")));
 
-      $("publish").disabled = true;
+      el("publish").disabled = true;
       try {
         setStatus("Publishing…");
         const head = await gh(`/repos/${REPO}/git/ref/heads/${BRANCH}`);
@@ -445,48 +449,78 @@
         const slug = postPath.replace(/^source\/_posts\/\d{4}-\d{2}-\d{2}-/, "").replace(/\.md$/, "");
         const url = `${SITE}/${y}/${m}/${d}/${encodeURIComponent(slug)}/`;
         setStatus("");
-        $("status").className = "ok";
-        $("status").innerHTML =
+        el("status").className = "ok";
+        el("status").innerHTML =
           `Published — deploying now, live in about a minute: <a href="${url}" target="_blank" rel="noopener">${decodeURIComponent(slug)}</a>`;
         if (state.mode === "new") { state.mode = "edit"; state.path = postPath; }
       } catch (err) {
         setStatus(err.message, "error");
       } finally {
-        $("publish").disabled = false;
+        el("publish").disabled = false;
       }
     }
 
     function setStatus(text, kind = "") {
-      const el = $("status");
-      el.textContent = text;
-      el.className = kind;
+      const statusEl = el("status");
+      statusEl.textContent = text;
+      statusEl.className = kind;
+    }
+
+    // ---- delete -------------------------------------------------------------
+
+    async function deletePost() {
+      const name = state.path.replace("source/_posts/", "");
+      if (!confirm(`Delete "${name}"?\n\nThis removes the post from the site (its images stay in the repo). The commit can be reverted on GitHub if needed.`)) return;
+      el("delete").disabled = true;
+      try {
+        setStatus("Deleting…");
+        // re-read the current sha so a just-published edit can't conflict
+        const file = await gh(`/repos/${REPO}/contents/${state.path}?ref=${BRANCH}`);
+        await gh(`/repos/${REPO}/contents/${state.path}`, {
+          method: "DELETE",
+          body: JSON.stringify({
+            message: `Delete post: ${state.title || name}`,
+            sha: file.sha,
+            branch: BRANCH,
+          }),
+        });
+        localStorage.removeItem(draftKey());
+        show("view-list");
+        el("list-status").textContent = `Deleted ${name} — deploying, gone in about a minute.`;
+        await loadList();
+      } catch (err) {
+        setStatus(err.message, "error");
+      } finally {
+        el("delete").disabled = false;
+      }
     }
 
     // ---- wiring -------------------------------------------------------------
 
-    $("token-save").addEventListener("click", () => {
-      const value = $("token-input").value.trim();
+    el("token-save").addEventListener("click", () => {
+      const value = el("token-input").value.trim();
       if (!value) return;
       localStorage.setItem("gh-token", value);
-      $("token-input").value = "";
+      el("token-input").value = "";
       boot();
     });
-    $("logout").addEventListener("click", () => {
+    el("logout").addEventListener("click", () => {
       if (confirm("Disconnect this device?")) {
         localStorage.removeItem("gh-token");
         boot();
       }
     });
-    $("new-post").addEventListener("click", newPost);
-    $("back").addEventListener("click", () => { show("view-list"); loadList(); });
-    $("add-image").addEventListener("click", () => $("file-input").click());
-    $("file-input").addEventListener("change", (e) => {
+    el("new-post").addEventListener("click", newPost);
+    el("delete").addEventListener("click", deletePost);
+    el("back").addEventListener("click", () => { show("view-list"); loadList(); });
+    el("add-image").addEventListener("click", () => el("file-input").click());
+    el("file-input").addEventListener("change", (e) => {
       addImages([...e.target.files]);
       e.target.value = "";
     });
-    $("publish").addEventListener("click", publish);
-    $("title").addEventListener("input", saveDraft);
-    $("body").addEventListener("input", saveDraft);
+    el("publish").addEventListener("click", publish);
+    el("title").addEventListener("input", saveDraft);
+    el("body").addEventListener("input", saveDraft);
 
     boot();
   </script>
