@@ -17,7 +17,7 @@ npm run new "Post Title"   # create source/_posts/YYYY-MM-DD-Post-Title.md
 - `source/_posts/*.md` — posts: `YYYY-MM-DD-slug.md` with `title`/`date` frontmatter.
   URL is `/:year/:month/:day/:slug/`. Post dates are wall-clock America/New_York.
 - `source/img/` — images, served at `/img/...`
-- `assets/` — static files copied verbatim (CSS, tocbot, avatar, favicon)
+- `assets/` — static files copied verbatim (CSS, avatar, favicon)
 - `site.config.mjs` — title, author, profile links, feed size, timezone
 - `build.mjs` — the generator (pages, atom feed, sitemaps)
 - `lib/md.mjs` — markdown pipeline: marked + highlight.js, Hexo-compatible

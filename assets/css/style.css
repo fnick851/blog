@@ -1017,3 +1017,10 @@ header label {
 .post-content pre .javascript .function {
   color: #8959a8;
 }
+
+/* smooth anchor scrolling (was tocbot's scrollSmooth option) */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}

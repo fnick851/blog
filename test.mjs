@@ -76,13 +76,35 @@ test("stylesheet is render-blocking (no preload hack)", async () => {
   assert.doesNotMatch(html, /rel="preload"[^>]*as="style"/);
 });
 
-test("tocbot loads only on pages with headings", async () => {
+test("TOC is generated at build time, only on pages with headings", async () => {
   const withToc = await read("2021/07/06/Notes-for-Rust/index.html");
-  assert.match(withToc, /tocbot\.min\.js/);
+  assert.match(withToc, /<a class="toc-link" href="#Borrowing">Borrowing<\/a>/);
   const noHeadings = await read("2022/11/17/post/index.html");
-  assert.doesNotMatch(noHeadings, /tocbot/);
+  assert.doesNotMatch(noHeadings, /post-toc/);
   const home = await read("index.html");
   assert.doesNotMatch(home, /<script/);
+});
+
+test("no external scripts anywhere — the site ships zero third-party JS", async () => {
+  const pages = ["index.html", "archives/index.html", "2020/04/03/Notes-for-JavaScript/index.html"];
+  for (const p of pages) {
+    assert.doesNotMatch(await read(p), /<script[^>]*\ssrc=/, p);
+  }
+});
+
+test("buildToc nests deeper headings as collapsed sublists", async () => {
+  const { buildToc } = await import("./lib/toc.mjs");
+  const toc = buildToc('<h2 id="A">A</h2><h3 id="B">B</h3><h2 id="C">C</h2>');
+  assert.equal(
+    toc,
+    '<ul class="toc-list">' +
+      '<li class="toc-list-item"><a class="toc-link" href="#A">A</a>' +
+      '<ul class="toc-list is-collapsible is-collapsed">' +
+      '<li class="toc-list-item"><a class="toc-link" href="#B">B</a></li>' +
+      "</ul></li>" +
+      '<li class="toc-list-item"><a class="toc-link" href="#C">C</a></li>' +
+      "</ul>"
+  );
 });
 
 test("profile links match config", async () => {
