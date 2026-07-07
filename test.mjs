@@ -81,8 +81,25 @@ test("TOC is generated at build time, only on pages with headings", async () => 
   assert.match(withToc, /<a class="toc-link" href="#Borrowing">Borrowing<\/a>/);
   const noHeadings = await read("2022/11/17/post/index.html");
   assert.doesNotMatch(noHeadings, /post-toc/);
+});
+
+test("site is a PWA: manifest, icons, service worker, registration", async () => {
   const home = await read("index.html");
-  assert.doesNotMatch(home, /<script/);
+  assert.match(home, /<link rel="manifest" href="\/manifest\.webmanifest">/);
+  assert.match(home, /serviceWorker/);
+  const manifest = JSON.parse(await read("manifest.webmanifest"));
+  assert.equal(manifest.display, "standalone");
+  assert.equal(manifest.shortcuts[0].url, "/admin/");
+  for (const icon of manifest.icons) await assert.doesNotReject(read(icon.src.slice(1)));
+  await assert.doesNotReject(read("sw.js"));
+});
+
+test("admin editor ships, is unindexed, and is excluded from the feed/sitemap", async () => {
+  const admin = await read("admin/index.html");
+  assert.match(admin, /<meta name="robots" content="noindex">/);
+  assert.match(admin, /api\.github\.com/);
+  const sitemap = await read("sitemap.txt");
+  assert.doesNotMatch(sitemap, /admin/);
 });
 
 test("no external scripts anywhere — the site ships zero third-party JS", async () => {

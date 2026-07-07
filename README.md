@@ -12,6 +12,15 @@ npm run serve              # dev server on http://localhost:4000, rebuilds on ch
 npm run new "Post Title"   # create source/_posts/YYYY-MM-DD-Post-Title.md
 ```
 
+## Writing from a phone
+
+The site is an installable PWA. `/admin/` is a self-contained editor that
+publishes by committing straight to this repository via the GitHub API
+(Vercel then deploys automatically). It needs a fine-grained personal access
+token — repository access limited to this repo, Contents read/write — pasted
+once on the device; drafts autosave locally, photos are resized client-side
+before upload, and each publish is a single git commit.
+
 ## Layout
 
 - `source/_posts/*.md` — posts: `YYYY-MM-DD-slug.md` with `title`/`date` frontmatter.

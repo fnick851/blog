@@ -35,6 +35,23 @@ Dependency policy: exactly `marked`, `highlight.js`, `js-yaml`. A minimal flat d
 - Markdown rendering keeps Hexo semantics: `breaks: true` (single newline → `<br>`), smartypants quotes applied only outside raw HTML/URLs, raw HTML passes through untouched (posts rely on this — one embeds a `<script>`), fenced code renders as hexo-util's line-numbered `<figure class="highlight">` table.
 - External links get `target="_blank" rel="noopener"` injected by `externalLinks()` in `lib/md.mjs`, which runs on every full page at write time — templates and markdown don't add these attributes themselves.
 
+## Admin editor and PWA
+
+`assets/admin/index.html` is a self-contained mobile editor served at `/admin/`
+(noindex, no styles/scripts shared with the public site). There is **no
+server**: it authenticates with a user-supplied fine-grained GitHub token
+(localStorage), reads posts via the Contents API, and publishes post + resized
+images as **one commit** via the Git Data API (blobs → tree → commit → ref) —
+Vercel deploys on push. Its hardcoded repo/branch/site constants must track
+reality. Expect `Add post:`/`Update post:` commits authored from the phone.
+
+The site is an installable PWA: `assets/manifest.webmanifest` (app shortcut →
+`/admin/`), `assets/sw.js` (network-first navigations, cache-first assets;
+`/admin` and `sw.js` are deliberately never cached — keep it that way), and a
+one-line registration inline in the layout head. This inline registration and
+the admin page are the only JavaScript exceptions to the otherwise script-free
+public pages; everything stays first-party.
+
 ## Content model
 
 Posts have exactly `title` and `date` frontmatter — no tags, categories, or drafts, and the generator supports nothing else. The atom feed includes only the newest `feedLimit` (20) posts and sets `updated` = published date by design.
