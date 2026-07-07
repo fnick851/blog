@@ -40,10 +40,12 @@ Dependency policy: exactly `marked`, `highlight.js`, `js-yaml`. A minimal flat d
 `assets/admin/index.html` is a self-contained mobile editor served at `/admin/`
 (noindex, no styles/scripts shared with the public site). There is **no
 server**: it authenticates with a user-supplied fine-grained GitHub token
-(localStorage), reads posts via the Contents API, and publishes post + resized
-images as **one commit** via the Git Data API (blobs → tree → commit → ref) —
-Vercel deploys on push. Its hardcoded repo/branch/site constants must track
-reality. Expect `Add post:`/`Update post:` commits authored from the phone.
+(localStorage), reads and deletes posts via the Contents API, and publishes
+post + resized images as **one commit** via the Git Data API (blobs → tree →
+commit → ref) — Vercel deploys on push. Its hardcoded repo/branch/site
+constants must track reality. Expect `Add post:`/`Update post:`/`Delete post:`
+commits authored from the phone; deletes leave the post's images in the repo
+by design.
 
 The site is an installable PWA: `assets/manifest.webmanifest` (app shortcut →
 `/admin/`), `assets/sw.js` (network-first navigations, cache-first assets;
