@@ -26,6 +26,11 @@ test("post URLs derive from filename (CJK preserved)", async () => {
   await assert.doesNotReject(read("2021/07/06/Notes-for-Rust/index.html"));
 });
 
+test("post pages show their date, with the exact instant in the markup", async () => {
+  const html = await read("2021/07/06/Notes-for-Rust/index.html");
+  assert.match(html, /<time datetime="2021-07-06T18:13:06\.000Z">July 6, 2021<\/time>/);
+});
+
 test("heading ids stay Hexo-style with headerlink anchors", async () => {
   const html = await read("2020/04/03/Notes-for-JavaScript/index.html");
   assert.match(html, /<h2 id="The-null-Type"><a href="#The-null-Type" class="headerlink"/);

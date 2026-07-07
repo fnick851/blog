@@ -390,6 +390,12 @@ a:hover {
   line-height: 1.5em;
 }
 
+.post-wrap .post-date {
+  margin-top: 0.3em;
+  font-size: 0.85em;
+  color: var(--color-muted);
+}
+
 .post-content {
   padding-top: 2rem;
   text-align: justify;

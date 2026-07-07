@@ -414,6 +414,20 @@
 
       el("publish").disabled = true;
       try {
+        if (state.mode === "new") {
+          // same title on the same day would silently overwrite — refuse
+          setStatus("Checking…");
+          let exists = false;
+          try {
+            await gh(`/repos/${REPO}/contents/${postPath}?ref=${BRANCH}`);
+            exists = true;
+          } catch (err) {
+            if (!String(err).includes("404")) throw err;
+          }
+          if (exists) {
+            return setStatus("A post with this title already exists for today — change the title.", "error");
+          }
+        }
         setStatus("Publishing…");
         const head = await gh(`/repos/${REPO}/git/ref/heads/${BRANCH}`);
         const headCommit = await gh(`/repos/${REPO}/git/commits/${head.object.sha}`);
