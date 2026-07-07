@@ -45,7 +45,8 @@ post + resized images as **one commit** via the Git Data API (blobs → tree →
 commit → ref) — Vercel deploys on push. Its hardcoded repo/branch/site
 constants must track reality. Expect `Add post:`/`Update post:`/`Delete post:`
 commits authored from the phone; deletes leave the post's images in the repo
-by design.
+by design. New-post publishes check for an existing same-day/same-title file
+first — the Git Data API overwrites silently, so keep that guard.
 
 The site is an installable PWA: `assets/manifest.webmanifest` (app shortcut →
 `/admin/`), `assets/sw.js` (network-first navigations, cache-first assets;
@@ -56,7 +57,7 @@ public pages; everything stays first-party.
 
 ## Content model
 
-Posts have exactly `title` and `date` frontmatter — no tags, categories, or drafts, and the generator supports nothing else. The atom feed includes only the newest `feedLimit` (20) posts and sets `updated` = published date by design.
+Posts have exactly `title` and `date` frontmatter — no tags, categories, or drafts, and the generator supports nothing else. The atom feed includes only the newest `feedLimit` (20) posts and sets `updated` = published date by design. Post pages display the publication date only (`.post-date`, human text date-only, exact UTC instant in the `<time datetime>` attribute); edits deliberately do not re-date a post, and there is no `updated:` field by decision — don't add auto-update stamping.
 
 ## Deployment
 
