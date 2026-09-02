@@ -335,19 +335,19 @@ a:hover {
   font-size: 2em;
 }
 
-/* A command typed at the header's prompt; the arrow belongs to the prompt
-   itself, so it is not repeated here. */
+/* A command typed at the header's prompt: the arrow belongs to the prompt
+   itself, so it is not repeated, and the link follows the header's own
+   colors (text at rest, accent on hover) rather than the prose link colors. */
 .intro .posts-link {
   margin-top: 2.5em;
   font-family: var(--font-mono);
   font-size: 0.9em;
 }
 .intro .posts-link a {
-  color: var(--color-link);
-  text-decoration: none;
+  color: var(--color-text);
 }
 .intro .posts-link a:hover {
-  color: var(--color-link-hover);
+  color: var(--color-accent);
 }
 
 /* ---------------------------------------------------------------- archive */
