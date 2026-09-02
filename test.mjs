@@ -168,6 +168,11 @@ test("beacon relay adds the visitor IP and forwards to Umami's gateway", async (
   }
 });
 
+test("home page links to the archive with the post count", async () => {
+  const html = await read("index.html");
+  assert.match(html, new RegExp(`<div class="posts-link">\\s*<a href="/archives"><span class="arrow">➜</span>${posts.length} posts</a>`));
+});
+
 test("buildToc nests deeper headings as sublists", async () => {
   const { buildToc } = await import("./lib/toc.mjs");
   const toc = buildToc('<h2 id="A">A</h2><h3 id="B">B</h3><h2 id="C">C</h2>');

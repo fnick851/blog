@@ -170,7 +170,7 @@ export async function build() {
   await rm(OUT, { recursive: true, force: true });
   await mkdir(OUT, { recursive: true });
 
-  await writePage("", layout(config.title, profilePage(renderMarkdown(config.profileDescription))));
+  await writePage("", layout(config.title, profilePage(renderMarkdown(config.profileDescription), posts.length)));
   await writePage("archives", layout(`Archives | ${config.title}`, archivePage(posts)));
   for (const post of posts) {
     await writePage(post.path, layout(`${post.title} | ${config.title}`, postPage(post)));
