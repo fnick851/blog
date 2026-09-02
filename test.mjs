@@ -170,7 +170,7 @@ test("beacon relay adds the visitor IP and forwards to Umami's gateway", async (
 
 test("archive link: home page body, post headers, nowhere on the archive itself", async () => {
   const home = await read("index.html");
-  assert.match(home, new RegExp(`<div class="posts-link">\\s*<a href="/archives"><span class="arrow">➜</span>${posts.length} posts</a>`));
+  assert.match(home, /<div class="posts-link">\s*<a href="\/archives">ls posts<\/a>/);
   const archives = await read("archives/index.html");
   for (const html of [home, archives]) assert.doesNotMatch(html, /class="menu-item"/);
   assert.doesNotMatch(archives, /posts-link/);

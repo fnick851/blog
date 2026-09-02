@@ -335,8 +335,11 @@ a:hover {
   font-size: 2em;
 }
 
+/* A command typed at the header's prompt; the arrow belongs to the prompt
+   itself, so it is not repeated here. */
 .intro .posts-link {
   margin-top: 2.5em;
+  font-family: var(--font-mono);
   font-size: 0.9em;
 }
 .intro .posts-link a {
@@ -345,10 +348,6 @@ a:hover {
 }
 .intro .posts-link a:hover {
   color: var(--color-link-hover);
-}
-.intro .posts-link .arrow {
-  color: #76a375;
-  margin-right: 0.4em;
 }
 
 /* ---------------------------------------------------------------- archive */
