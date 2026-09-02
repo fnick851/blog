@@ -168,14 +168,15 @@ test("beacon relay adds the visitor IP and forwards to Umami's gateway", async (
   }
 });
 
-test("home page links to the archive from its body, other pages from the header", async () => {
+test("archive link: home page body, post headers, nowhere on the archive itself", async () => {
   const home = await read("index.html");
   assert.match(home, new RegExp(`<div class="posts-link">\\s*<a href="/archives"><span class="arrow">➜</span>${posts.length} posts</a>`));
-  assert.doesNotMatch(home, /class="menu-item"/);
-  for (const p of ["archives/index.html", "2021/07/06/Notes-for-Rust/index.html"]) {
-    assert.match(await read(p), /<a class="menu-item" href="\/archives">posts<\/a>/, p);
-    assert.doesNotMatch(await read(p), /posts-link/, p);
-  }
+  const archives = await read("archives/index.html");
+  for (const html of [home, archives]) assert.doesNotMatch(html, /class="menu-item"/);
+  assert.doesNotMatch(archives, /posts-link/);
+  const post = await read("2021/07/06/Notes-for-Rust/index.html");
+  assert.match(post, /<a class="menu-item" href="\/archives">posts<\/a>/);
+  assert.doesNotMatch(post, /posts-link/);
 });
 
 test("buildToc nests deeper headings as sublists", async () => {
