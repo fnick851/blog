@@ -168,9 +168,14 @@ test("beacon relay adds the visitor IP and forwards to Umami's gateway", async (
   }
 });
 
-test("home page links to the archive with the post count", async () => {
-  const html = await read("index.html");
-  assert.match(html, new RegExp(`<div class="posts-link">\\s*<a href="/archives"><span class="arrow">➜</span>${posts.length} posts</a>`));
+test("home page links to the archive from its body, other pages from the header", async () => {
+  const home = await read("index.html");
+  assert.match(home, new RegExp(`<div class="posts-link">\\s*<a href="/archives"><span class="arrow">➜</span>${posts.length} posts</a>`));
+  assert.doesNotMatch(home, /class="menu-item"/);
+  for (const p of ["archives/index.html", "2021/07/06/Notes-for-Rust/index.html"]) {
+    assert.match(await read(p), /<a class="menu-item" href="\/archives">posts<\/a>/, p);
+    assert.doesNotMatch(await read(p), /posts-link/, p);
+  }
 });
 
 test("buildToc nests deeper headings as sublists", async () => {
