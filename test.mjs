@@ -130,6 +130,44 @@ test("analytics tracker is present only when a website ID is configured", async 
   assert.match(sw, /startsWith\("\/stats\/"\)/);
 });
 
+test("beacon relay adds the visitor IP and forwards to Umami's gateway", async () => {
+  const { POST, clientIp } = await import("./api/send.mjs");
+  const vercel = JSON.parse(await readFile("vercel.json", "utf8"));
+  assert.ok(vercel.rewrites.some((r) => r.source === "/stats/api/send" && r.destination === "/api/send"));
+  assert.equal(clientIp(new Headers({ "x-forwarded-for": "203.0.113.5, 10.0.0.1" })), "203.0.113.5");
+  assert.equal(clientIp(new Headers({ "x-real-ip": "203.0.113.6" })), "203.0.113.6");
+
+  const realFetch = globalThis.fetch;
+  let captured;
+  globalThis.fetch = async (url, init) => {
+    captured = { url, init };
+    return new Response('{"cache":"tok"}', { status: 200, headers: { "content-type": "application/json" } });
+  };
+  try {
+    const request = new Request("https://noah-song.com/stats/api/send", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "user-agent": "UA/1",
+        "x-forwarded-for": "203.0.113.5",
+        "x-umami-website-id": "w",
+        "x-vercel-id": "iad1::abc",
+      },
+      body: JSON.stringify({ type: "event", payload: { website: "w", url: "/" } }),
+    });
+    const response = await POST(request);
+    assert.equal(response.status, 200);
+    assert.equal(await response.text(), '{"cache":"tok"}');
+    assert.equal(captured.url, "https://gateway.umami.is/api/send");
+    assert.equal(JSON.parse(captured.init.body).payload.ip, "203.0.113.5");
+    assert.equal(captured.init.headers["user-agent"], "UA/1");
+    assert.equal(captured.init.headers["x-umami-website-id"], "w");
+    assert.equal(captured.init.headers["x-vercel-id"], undefined);
+  } finally {
+    globalThis.fetch = realFetch;
+  }
+});
+
 test("buildToc nests deeper headings as sublists", async () => {
   const { buildToc } = await import("./lib/toc.mjs");
   const toc = buildToc('<h2 id="A">A</h2><h3 id="B">B</h3><h2 id="C">C</h2>');

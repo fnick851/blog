@@ -61,14 +61,22 @@ Visitor tracking is Umami Cloud (free Hobby tier), enabled by setting
 `umamiWebsiteId` in `site.config.mjs`; an empty ID removes the tracker and
 every related attribute, so the build is byte-identical to a tracking-free
 site. The tracker is never loaded from Umami's domain: `vercel.json` rewrites
-`/stats/script.js` and `/stats/api/send` to Umami's script and gateway, and
-the tag points at them with `data-host-url="/stats"`, so pages only talk to
-their own origin. `data-domains` pins collection to the production hostname,
+`/stats/script.js` to Umami's script and `/stats/api/send` to `api/send.mjs`,
+and the tag points at them with `data-host-url="/stats"`, so pages only talk
+to their own origin. `api/send.mjs` is the site's one serverless function: it
+forwards each beacon to Umami's gateway with the visitor's IP address added
+to the payload (`payload.ip`, which the gateway honors). Rewriting straight
+to the gateway was tried first and geolocated every visit to Vercel's egress
+address in Ashburn with a new session per hit, because the gateway sits
+behind Cloudflare and trusts its connecting IP over `x-forwarded-for`. `data-domains` pins collection to the production hostname,
 so `npm run serve` and preview deployments send nothing (locally the script
 simply 404s). `sw.js` skips `/stats/`. External links get
 `data-umami-event="outbound"` plus the destination URL from `externalLinks()`
 so clicks show up as events. Umami is cookie-less and the site has no consent
 banner by design. The `/admin/` page has its own head and is not tracked.
+portfolio.noah-song.com (separate repo) shares this website ID because the
+free tier allows one website; filter the Umami dashboard by hostname to
+separate the two.
 
 The app icons (`assets/image/icon-{512,192,180}.png`) are the header's `➜ ~`
 prompt mark on a dark terminal background — colors from `style.css`'s
