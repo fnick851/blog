@@ -55,6 +55,15 @@ one-line registration inline in the layout head. This inline registration and
 the admin page are the only JavaScript exceptions to the otherwise script-free
 public pages; everything stays first-party.
 
+The app icons (`assets/image/icon-{512,192,180}.png`) are the header's `➜ ~`
+prompt mark on a dark terminal background — colors from `style.css`'s
+`.navbar-header` rules — downscaled from a 1024px headless-Chrome render of a
+small HTML file (not in the repo; trivial to recreate from this description).
+The manifest declares them maskable, which is only valid because the mark
+keeps wide margins; iOS caches icon and name at install time, so icon changes
+require users to delete and re-add the app (which wipes its localStorage,
+including the admin token).
+
 ## Content model
 
 Posts have exactly `title` and `date` frontmatter — no tags, categories, or drafts, and the generator supports nothing else. The atom feed includes only the newest `feedLimit` (20) posts and sets `updated` = published date by design. Post pages display the publication date only (`.post-date`, human text date-only, exact UTC instant in the `<time datetime>` attribute); edits deliberately do not re-date a post, and there is no `updated:` field by decision — don't add auto-update stamping.
