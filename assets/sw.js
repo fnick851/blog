@@ -1,7 +1,7 @@
 // Minimal service worker: makes the site installable and readable offline.
 // - navigations: network first, cached copy as offline fallback
 // - static assets: cache first, refreshed in the background
-// - /admin/ and this file are never cached (the editor must stay fresh)
+// - /admin/, /stats/ (analytics proxy) and this file are never cached
 const CACHE = "site-v1";
 
 self.addEventListener("install", () => self.skipWaiting());
@@ -19,7 +19,7 @@ self.addEventListener("fetch", (event) => {
   const { request } = event;
   const url = new URL(request.url);
   if (request.method !== "GET" || url.origin !== location.origin) return;
-  if (url.pathname.startsWith("/admin") || url.pathname === "/sw.js") return;
+  if (url.pathname.startsWith("/admin") || url.pathname.startsWith("/stats/") || url.pathname === "/sw.js") return;
 
   if (request.mode === "navigate") {
     event.respondWith(

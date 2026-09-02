@@ -108,11 +108,26 @@ test("admin editor ships, is unindexed, and is excluded from the feed/sitemap", 
   assert.doesNotMatch(sitemap, /admin/);
 });
 
-test("no external scripts anywhere — the site ships zero third-party JS", async () => {
+test("no cross-origin scripts anywhere — every script is served first-party", async () => {
   const pages = ["index.html", "archives/index.html", "2020/04/03/Notes-for-JavaScript/index.html"];
   for (const p of pages) {
-    assert.doesNotMatch(await read(p), /<script[^>]*\ssrc=/, p);
+    assert.doesNotMatch(await read(p), /<script[^>]*\ssrc=["'](?:https?:)?\/\//, p);
   }
+});
+
+test("analytics tracker is present only when a website ID is configured", async () => {
+  const { default: config } = await import("./site.config.mjs");
+  const html = await read("index.html");
+  const tracker = /<script defer src="\/stats\/script\.js" data-website-id="[^"]+" data-host-url="\/stats"/;
+  if (config.umamiWebsiteId) {
+    assert.match(html, tracker);
+    assert.match(html, /data-umami-event="outbound" data-umami-event-url="https:\/\/github\.com\/fnick851"/);
+  } else {
+    assert.doesNotMatch(html, tracker);
+    assert.doesNotMatch(html, /data-umami-event/);
+  }
+  const sw = await read("sw.js");
+  assert.match(sw, /startsWith\("\/stats\/"\)/);
 });
 
 test("buildToc nests deeper headings as sublists", async () => {

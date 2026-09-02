@@ -51,9 +51,24 @@ first — the Git Data API overwrites silently, so keep that guard.
 The site is an installable PWA: `assets/manifest.webmanifest` (app shortcut →
 `/admin/`), `assets/sw.js` (network-first navigations, cache-first assets;
 `/admin` and `sw.js` are deliberately never cached — keep it that way), and a
-one-line registration inline in the layout head. This inline registration and
-the admin page are the only JavaScript exceptions to the otherwise script-free
+one-line registration inline in the layout head. This inline registration,
+the admin page, and the analytics tracker below are the only JavaScript on the
 public pages; everything stays first-party.
+
+## Analytics
+
+Visitor tracking is Umami Cloud (free Hobby tier), enabled by setting
+`umamiWebsiteId` in `site.config.mjs`; an empty ID removes the tracker and
+every related attribute, so the build is byte-identical to a tracking-free
+site. The tracker is never loaded from Umami's domain: `vercel.json` rewrites
+`/stats/script.js` and `/stats/api/send` to Umami's script and gateway, and
+the tag points at them with `data-host-url="/stats"`, so pages only talk to
+their own origin. `data-domains` pins collection to the production hostname,
+so `npm run serve` and preview deployments send nothing (locally the script
+simply 404s). `sw.js` skips `/stats/`. External links get
+`data-umami-event="outbound"` plus the destination URL from `externalLinks()`
+so clicks show up as events. Umami is cookie-less and the site has no consent
+banner by design. The `/admin/` page has its own head and is not tracked.
 
 The app icons (`assets/image/icon-{512,192,180}.png`) are the header's `➜ ~`
 prompt mark on a dark terminal background — colors from `style.css`'s

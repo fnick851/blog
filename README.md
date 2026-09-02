@@ -21,6 +21,14 @@ token — repository access limited to this repo, Contents read/write — pasted
 once on the device; drafts autosave locally, photos are resized client-side
 before upload, and each publish is a single git commit.
 
+## Analytics
+
+Visitor stats come from [Umami](https://umami.is/) and switch on when
+`umamiWebsiteId` is set in `site.config.mjs`. The tracker is proxied under
+`/stats/` (see `vercel.json`) so the page never loads anything cross-origin,
+collection is limited to the production hostname, and external link clicks
+are recorded as `outbound` events. No cookies, so no consent banner.
+
 ## Layout
 
 - `source/_posts/*.md` — posts: `YYYY-MM-DD-slug.md` with `title`/`date` frontmatter.

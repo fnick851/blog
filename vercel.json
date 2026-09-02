@@ -1,4 +1,8 @@
 {
   "buildCommand": "npm run build",
-  "outputDirectory": "public"
+  "outputDirectory": "public",
+  "rewrites": [
+    { "source": "/stats/script.js", "destination": "https://cloud.umami.is/script.js" },
+    { "source": "/stats/api/send", "destination": "https://gateway.umami.is/api/send" }
+  ]
 }

@@ -11,6 +11,9 @@ export default {
   timezone: "America/New_York",
   // Newest N posts included in atom.xml.
   feedLimit: 20,
+  // Umami Cloud website ID. Empty disables the tracker and the outbound-link
+  // event attributes entirely.
+  umamiWebsiteId: "7477da55-81ef-4db6-8b41-0e6c4dfece9d",
 
   // Header / profile
   nickname: "宋汉仑",
