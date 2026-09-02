@@ -34,6 +34,7 @@ Dependency policy: exactly `marked`, `highlight.js`, `js-yaml`. A minimal flat d
 - **Post dates are wall-clock America/New_York** strings (`YYYY-MM-DD HH:mm:ss`). `build.mjs` converts them to UTC instants for the feed. Frontmatter is parsed with js-yaml `CORE_SCHEMA` specifically so dates stay strings — `DEFAULT_SCHEMA` would parse them as UTC Dates and shift every timestamp.
 - Markdown rendering keeps Hexo semantics: `breaks: true` (single newline → `<br>`), smartypants quotes applied only outside raw HTML/URLs, raw HTML passes through untouched (posts rely on this — one embeds a `<script>`), fenced code renders as hexo-util's line-numbered `<figure class="highlight">` table.
 - External links get `target="_blank" rel="noopener"` injected by `externalLinks()` in `lib/md.mjs`, which runs on every full page at write time — templates and markdown don't add these attributes themselves.
+- **Two visual conventions, kept apart.** The header is a shell prompt (`➜ ~ name ▍`) and the home page belongs to that metaphor: its only route to the archive is `ls posts` under the profile icons, styled as a typed command (mono, text color at rest, accent on hover, no second arrow), and the header menu is omitted on the home and archive pages (`layout(..., { nav: false })`). The blue/pink link colors are for prose inside posts only. Noah chose this deliberately over a post list on the home page.
 
 ## Admin editor and PWA
 
